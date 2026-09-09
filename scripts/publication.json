@@ -1,0 +1,6 @@
+{
+  "project": "evidra-rag",
+  "include": ["src", "tests", "scripts", "config", "fixtures", "docs", ".github/workflows", ".streamlit", "README.md", "DEV_SPEC.md", "PUBLICATION.md", "LOCAL_DEPLOYMENT.md", "LICENSE", "THIRD_PARTY_NOTICES.md", "pyproject.toml", "uv.lock", "run-local.ps1", ".gitignore", ".gitattributes"],
+  "exclude": ["config/test_credentials.yaml", "tests/fixtures/sample_documents/blogger_intro.pdf", "tests/fixtures/sample_documents/test_vision_llm.jpg", "tests/fixtures/generate_blogger_intro_pdf.py"],
+  "required": ["LICENSE", "README.md", "pyproject.toml", "uv.lock", "config/settings.demo.yaml", "fixtures/publication_demo.json"]
+}

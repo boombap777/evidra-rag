@@ -1,0 +1,29 @@
+name: portable-offline-tests
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PYTHONUTF8: '1'
+      STREAMLIT_BROWSER_GATHER_USAGE_STATS: 'false'
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - uses: astral-sh/setup-uv@v7
+      - run: uv sync --extra dev --frozen
+      - name: Offline tests including real UI component interactions
+        run: uv run --no-sync pytest --junitxml=test_data/publication-junit.xml --cov=src --cov-report=json:test_data/publication-coverage.json
+      - name: Selected source publication scan
+        run: uv run --no-sync python scripts/publication.py
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: rag-local-test-evidence
+          path: test_data/publication-*

@@ -1,0 +1,57 @@
+# Local-first configuration for this E-drive deployment.
+# Cloud credentials are intentionally not required for ingestion or retrieval.
+
+llm:
+  provider: "ollama"
+  model: "disabled"
+  temperature: 0.0
+  max_tokens: 256
+
+embedding:
+  provider: "openai"
+  model: "Qwen3-Embedding-0.6B-Q8_0"
+  dimensions: 1024
+  api_key: "local-llama-cpp"
+  base_url: "http://127.0.0.1:18282/v1"
+
+vector_store:
+  provider: "chroma"
+  persist_directory: "./data/db/chroma"
+  collection_name: "knowledge_hub"
+
+retrieval:
+  # Observed Stack Overflow benchmark winner; hybrid_rrf remains opt-in.
+  strategy: "dense"
+  dense_top_k: 20
+  sparse_top_k: 20
+  fusion_top_k: 10
+  rrf_k: 60
+
+rerank:
+  enabled: false
+  provider: "none"
+  model: "none"
+  top_k: 5
+
+evaluation:
+  enabled: false
+  provider: "custom"
+  metrics:
+    - "hit_rate"
+    - "mrr"
+
+observability:
+  log_level: "INFO"
+  trace_enabled: true
+  trace_file: "./logs/traces.jsonl"
+  structured_logging: true
+
+ingestion:
+  chunk_size: 1000
+  chunk_overlap: 200
+  splitter: "recursive"
+  batch_size: 32
+  chunk_refiner:
+    use_llm: false
+  metadata_enricher:
+    use_llm: false

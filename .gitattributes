@@ -1,0 +1,7 @@
+* text=auto
+*.py text eol=lf
+*.md text eol=lf
+# Preserve byte-hashed test and demo fixtures on every platform.
+fixtures/** -text
+tests/fixtures/** -text
+config/** -text

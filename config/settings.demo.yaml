@@ -1,0 +1,43 @@
+# Offline UI/contract demonstration, not the Qwen3 benchmark profile.
+llm:
+  provider: ollama
+  model: disabled
+  temperature: 0.0
+  max_tokens: 64
+embedding:
+  provider: local_hash
+  model: deterministic-contract-v1
+  dimensions: 64
+vector_store:
+  provider: chroma
+  persist_directory: ./data/demo/chroma
+  collection_name: publication_demo
+retrieval:
+  strategy: dense
+  dense_top_k: 20
+  sparse_top_k: 20
+  fusion_top_k: 10
+  rrf_k: 60
+rerank:
+  enabled: false
+  provider: none
+  model: none
+  top_k: 5
+evaluation:
+  enabled: false
+  provider: custom
+  metrics: [hit_rate, mrr]
+observability:
+  log_level: WARNING
+  trace_enabled: true
+  trace_file: ./logs/demo-traces.jsonl
+  structured_logging: true
+ingestion:
+  chunk_size: 1000
+  chunk_overlap: 200
+  splitter: recursive
+  batch_size: 32
+  chunk_refiner:
+    use_llm: false
+  metadata_enricher:
+    use_llm: false
