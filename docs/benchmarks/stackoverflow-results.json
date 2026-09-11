@@ -1,0 +1,89 @@
+{
+  "benchmark": {
+    "dataset": "mteb/stackoverflowdupquestions-reranking",
+    "dataset_test_rows": 2992,
+    "sample_seed": 20260901,
+    "queries": 500,
+    "global_corpus_documents": 14613,
+    "labelled_query_candidate_pairs": 14944,
+    "retrieval_depth": 50,
+    "metric_k": 10,
+    "evaluation_mode": "global corpus retrieval"
+  },
+  "models": {
+    "embedding": "Qwen3-Embedding-0.6B-Q8_0",
+    "reranker": "cross-encoder/ms-marco-MiniLM-L-6-v2"
+  },
+  "metrics": {
+    "bm25": {
+      "hit_rate_at_10": 0.718,
+      "recall_at_10": 0.686,
+      "mrr_at_10": 0.39837936507936506,
+      "ndcg_at_10": 0.45361575144916916
+    },
+    "dense": {
+      "hit_rate_at_10": 0.838,
+      "recall_at_10": 0.8213333333333334,
+      "mrr_at_10": 0.5294690476190476,
+      "ndcg_at_10": 0.5894719967962219
+    },
+    "hybrid_rrf": {
+      "hit_rate_at_10": 0.834,
+      "recall_at_10": 0.8113333333333334,
+      "mrr_at_10": 0.48099365079365075,
+      "ndcg_at_10": 0.550826247566942
+    },
+    "hybrid_rrf_rerank": {
+      "hit_rate_at_10": 0.812,
+      "recall_at_10": 0.7846666666666666,
+      "mrr_at_10": 0.49143333333333333,
+      "ndcg_at_10": 0.5512724965879224
+    }
+  },
+  "latency": {
+    "bm25": {
+      "samples": 100,
+      "p50_ms": 0.8585000014136313,
+      "p95_ms": 10.065334999853802,
+      "mean_ms": 3.3010930001546512
+    },
+    "dense": {
+      "samples": 100,
+      "p50_ms": 74.97595000131696,
+      "p95_ms": 90.47512999986793,
+      "mean_ms": 75.29937600000267
+    },
+    "hybrid_rrf": {
+      "samples": 100,
+      "p50_ms": 74.87399999990885,
+      "p95_ms": 90.06375499993737,
+      "mean_ms": 75.3179810000438
+    },
+    "hybrid_rrf_rerank": {
+      "samples": 100,
+      "p50_ms": 211.40070000001288,
+      "p95_ms": 267.660259999684,
+      "mean_ms": 214.44132499978878
+    }
+  },
+  "quality_gate": {
+    "primary_metric": "hit_rate_at_10",
+    "tie_breakers": [
+      "mrr_at_10",
+      "ndcg_at_10"
+    ],
+    "baseline": "dense",
+    "selected_method": "dense",
+    "reranker_accepted": false,
+    "fallback_method": "dense"
+  },
+  "improvements": {
+    "dense_vs_bm25_hit_rate_at_10_percentage_points": 12.0,
+    "dense_vs_bm25_mrr_at_10_relative_percent": 32.90574111778275,
+    "hybrid_vs_dense_hit_rate_at_10_percentage_points": -0.40000000000000036,
+    "rerank_vs_hybrid_hit_rate_at_10_percentage_points": -2.199999999999991,
+    "rerank_vs_hybrid_mrr_at_10_relative_percent": 2.170440820259656,
+    "rerank_vs_dense_hit_rate_at_10_percentage_points": -2.599999999999991,
+    "rerank_vs_dense_mrr_at_10_relative_percent": -7.1837465205484285
+  }
+}

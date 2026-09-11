@@ -2,8 +2,8 @@
   "schema_version": "source-publication-v1",
   "scope": "selected working-tree files; no Git history or production certification",
   "project": "evidra-rag",
-  "file_count": 230,
-  "total_bytes": 4565831,
+  "file_count": 233,
+  "total_bytes": 4584126,
   "passed": true,
   "findings": [],
   "files": [
@@ -57,8 +57,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 36478,
-      "sha256": "8ef11d280d5a30d6afe73d8f20cec52ced0215ec4da4cd3731cd9d78e46db249",
+      "bytes": 2944,
+      "sha256": "b31a4ec46922d22303178c68c5af885259e7627948906571d69a4e9b005b9920",
       "source_export_sha256": "83bb4a80eaca8972464f1da73e79708922d78e74e24c8dc16e574dadc6479003"
     },
     {
@@ -114,6 +114,21 @@
       "bytes": 1089,
       "sha256": "9bedd63d297695b8bbdb60c43910407d9212e794f1d9c35acd05a5e6d7330d3c",
       "source_export_sha256": "9bedd63d297695b8bbdb60c43910407d9212e794f1d9c35acd05a5e6d7330d3c"
+    },
+    {
+      "path": "docs/benchmark-results.md",
+      "bytes": 2276,
+      "sha256": "31a8653ef2808bf3be0819a3fff646e514a015363531ac5155023b5b2d9187a0"
+    },
+    {
+      "path": "docs/benchmarks/stackoverflow-results.json",
+      "bytes": 2589,
+      "sha256": "12efb7431770e94f36278a3075e1c8dc39b9c67ce4c7596b5889467ce75d134b"
+    },
+    {
+      "path": "docs/images/search-demo.jpg",
+      "bytes": 46964,
+      "sha256": "a26177d5a4fb54124f85367c0b4a17d8681b1aada8f90ffb1670a502f277a1c9"
     },
     {
       "path": "docs/publication-checks.md",
@@ -1388,5 +1403,6 @@
       "source_export_sha256": "ca8cdf97cd6e9b72d063b742085beb64d9fc432384148f7351ab82ddffb21966"
     }
   ],
-  "sha256_representation": "Git index blob bytes; checkout line endings may differ"
+  "sha256_representation": "Git index blob bytes; checkout line endings may differ",
+  "revision_note": "README wording and navigation revised; real synthetic-demo screenshots and RAG aggregate benchmark added. Runtime code, frozen datasets and model artifacts unchanged."
 }
